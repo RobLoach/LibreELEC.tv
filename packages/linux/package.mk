@@ -73,6 +73,7 @@ if [ "$TARGET_KERNEL_ARCH" = "arm64" -a "$TARGET_ARCH" = "arm" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET gcc-linaro-aarch64-linux-gnu:host"
   PKG_TARGET_PREFIX=$TOOLCHAIN/lib/gcc-linaro-aarch64-linux-gnu/bin/aarch64-linux-gnu-
   HEADERS_ARCH=$TARGET_ARCH
+  PKG_BUILD_PERF="no"
 else
   PKG_TARGET_PREFIX=$TARGET_PREFIX
 fi
