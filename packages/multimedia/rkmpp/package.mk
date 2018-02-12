@@ -17,8 +17,8 @@
 ################################################################################
 
 PKG_NAME="rkmpp"
-PKG_VERSION="c6594ae"
-PKG_SHA256="981f7bc04677ff5135cea92e9926d5521ed38b359514d3405dd8f01c9295d147"
+PKG_VERSION="c8a41a6"
+PKG_SHA256="01b84eecde7cae98035ecce866b48f903f9deaa7e19b048ff9cb87edf6446659"
 PKG_ARCH="arm aarch64"
 PKG_LICENSE="APL"
 PKG_SITE="https://github.com/rockchip-linux/mpp"
@@ -29,7 +29,7 @@ PKG_SECTION="multimedia"
 PKG_SHORTDESC="rkmpp: Rockchip Media Process Platform (MPP) module"
 PKG_LONGDESC="rkmpp: Rockchip Media Process Platform (MPP) module"
 
-if [ "$UBOOT_SYSTEM" = "rk3328" -o "$UBOOT_SYSTEM" = "rk3399" ]; then
+if [ "$DEVICE" = "RK3328" -o "$DEVICE" = "RK3399" ]; then
   PKG_ENABLE_VP9D="ON"
 else
   PKG_ENABLE_VP9D="OFF"

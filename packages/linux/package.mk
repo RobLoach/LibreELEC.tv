@@ -47,8 +47,8 @@ case "$LINUX" in
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET aml-dtbtools:host"
     ;;
   rockchip-4.4)
-    PKG_VERSION="28018092"
-    PKG_SHA256="944b59f3b8fd9c1e37ea717e600651f9e49f3f01e2e9290d00386dec1789bf83"
+    PKG_VERSION="7b43537e"
+    PKG_SHA256="f934e8364308388868edd8d89f6fa71af8516a9b25bfaa1451bdc1b473735fdc"
     PKG_URL="https://github.com/rockchip-linux/kernel/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_DIR="kernel-$PKG_VERSION*"
     PKG_PATCH_DIRS="rockchip-4.4"
@@ -73,6 +73,7 @@ if [ "$TARGET_KERNEL_ARCH" = "arm64" -a "$TARGET_ARCH" = "arm" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET gcc-linaro-aarch64-linux-gnu:host"
   PKG_TARGET_PREFIX=$TOOLCHAIN/lib/gcc-linaro-aarch64-linux-gnu/bin/aarch64-linux-gnu-
   HEADERS_ARCH=$TARGET_ARCH
+  PKG_BUILD_PERF="no"
 else
   PKG_TARGET_PREFIX=$TARGET_PREFIX
 fi

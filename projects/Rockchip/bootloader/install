@@ -17,20 +17,25 @@
 ################################################################################
 
 PKG_RKBIN="$(get_build_dir rkbin)"
+PKG_SOC=$UBOOT_SYSTEM
 
-case "$UBOOT_SYSTEM" in
+if [ "$DEVICE" = "RK3328" -o "$DEVICE" = "RK3399" ]; then
+  PKG_SOC="${DEVICE/RK/rk}"
+fi
+
+case "$PKG_SOC" in
   rk3036)
     PKG_DATAFILE="spl/u-boot-spl-nodtb.bin"
     PKG_LOADER="u-boot-dtb.bin"
     ;;
   rk3328)
-    PKG_DATAFILE="$PKG_RKBIN/rk33/rk3328_ddr_786MHz_v1.08.bin"
+    PKG_DATAFILE="$PKG_RKBIN/rk33/rk3328_ddr_786MHz_v1.12.bin"
     PKG_LOADER="$PKG_RKBIN/rk33/rk3328_miniloader_v2.44.bin"
-    PKG_BL31="$PKG_RKBIN/rk33/rk3328_bl31_v1.34.bin"
+    PKG_BL31="$PKG_RKBIN/rk33/rk3328_bl31_v1.39.bin"
     ;;
   rk3399)
-    PKG_DATAFILE="$PKG_RKBIN/rk33/rk3399_ddr_800MHz_v1.08.bin"
-    PKG_LOADER="$PKG_RKBIN/rk33/rk3399_miniloader_v1.06.bin"
+    PKG_DATAFILE="$PKG_RKBIN/rk33/rk3399_ddr_800MHz_v1.09.bin"
+    PKG_LOADER="$PKG_RKBIN/rk33/rk3399_miniloader_v1.09.bin"
     PKG_BL31="$PKG_RKBIN/rk33/rk3399_bl31_v1.00.elf"
     ;;
   *)
@@ -40,7 +45,7 @@ case "$UBOOT_SYSTEM" in
 esac
 
 if [ -n "$PKG_DATAFILE" -a -n "$PKG_LOADER" ]; then
-  tools/mkimage -n $UBOOT_SYSTEM -T rksd -d "$PKG_DATAFILE" idbloader.img
+  tools/mkimage -n $PKG_SOC -T rksd -d "$PKG_DATAFILE" idbloader.img
   cat "$PKG_LOADER" >> idbloader.img
   cp -av idbloader.img $INSTALL/usr/share/bootloader
 fi
